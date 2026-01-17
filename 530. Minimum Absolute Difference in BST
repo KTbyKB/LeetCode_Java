@@ -1,0 +1,26 @@
+530. Minimum Absolute Difference in BST
+====================================
+class Solution {
+    int mnDiff = Integer.MAX_VALUE;
+    Integer prev = null;
+    public int getMinimumDifference(TreeNode root) {
+
+        if(root == null){
+            return mnDiff;
+        }
+
+        getMinimumDifference(root.left);
+
+        if(prev != null){
+            mnDiff = Math.min(mnDiff, root.val - prev);
+        }
+
+        if(root != null){
+            prev = root.val;
+        }
+
+        getMinimumDifference(root.right);
+
+        return mnDiff;        
+    }
+}
