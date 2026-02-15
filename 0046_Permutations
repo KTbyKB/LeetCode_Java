@@ -1,0 +1,33 @@
+46. Permutations
+=================
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        backtrack(nums, res, new ArrayList<>());
+        return res;
+    }
+    public void backtrack(int[] nums, List<List<Integer>> res,  ArrayList<Integer> curr){
+        // if length matched, it is permutation
+        if(curr.size() == nums.length){
+            res.add(new ArrayList<>(curr));
+            return;
+        }
+
+        for(int num : nums){
+            // skip of we get same element
+            if(curr.contains(num)){
+                continue;
+            }
+
+            // add new element
+            curr.add(num);
+
+            // Go back to try other element
+            backtrack(nums, res, curr);
+
+            //remove the element
+            curr.remove(curr.size() - 1);
+        }
+    }
+}
