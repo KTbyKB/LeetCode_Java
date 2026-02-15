@@ -1,0 +1,24 @@
+77. Combinations
+===============
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        backtracking(n, k, new ArrayList<>(), res);
+        return res;        
+    }
+    public void backtracking(int n, int k, List<Integer> curr, List<List<Integer>> res){
+        if(k == 0){
+            res.add(new ArrayList<>(curr));
+            return;
+        }
+        if(n == 0){
+            return;
+        }
+        //pick
+        curr.add(n);
+        backtracking(n-1, k-1, curr, res);
+        //not pick
+        curr.remove(curr.size()-1);
+        backtracking(n-1, k, curr, res);
+    }
+}
